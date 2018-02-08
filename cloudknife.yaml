@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cloudknife
+spec:
+  containers:
+  - name: cloudknife
+    image: quay.io/datawire/cloudknife
+    imagePullPolicy: Always

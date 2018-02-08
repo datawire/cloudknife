@@ -16,4 +16,4 @@ RUN apk add --no-cache \
 	rm -r /root/.cache && \
 	pip install redis
 
-ENTRYPOINT ["/bin/sh"]
+CMD exec /bin/sh -c "trap : TERM INT; sleep 2147483647 & wait"
