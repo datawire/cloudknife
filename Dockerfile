@@ -1,19 +1,25 @@
 FROM alpine:3.7
 
 RUN apk add --no-cache \
+        bash \
 		bind-tools \
-                curl \
+		curl \
 		netcat-openbsd \
 		python3 \
 		python3-dev \
-                socat \
-		wget && \
-	python3 -m ensurepip && \
-	rm -r /usr/lib/python*/ensurepip && \
-	pip3 install --upgrade pip setuptools && \
-	if [[ ! -e /usr/bin/pip ]]; then ln -s pip3 /usr/bin/pip; fi && \
-	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-	rm -r /root/.cache && \
-	pip install redis
+		socat \
+		wget \
+    && apk add --no-cache --virtual build-deps \
+        build-base \
+        postgresql-dev \
+	&& python3 -m ensurepip \
+	&& rm -r /usr/lib/python*/ensurepip \
+	&& pip3 install --upgrade pip setuptools \
+	&& if [[ ! -e /usr/bin/pip ]]; then ln -s pip3 /usr/bin/pip; fi \
+	&& if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi \
+	&& pip install redis pgcli \
+	&& rm -rf /root/.cache \
+	&& apk del build-deps
 
-CMD exec /bin/sh -c "trap : TERM INT; sleep 2147483647 & wait"
+ENTRYPOINT ["/bin/bash"]
+CMD ["-c", "trap : TERM INT; sleep 2147483647 & wait"]
