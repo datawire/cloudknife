@@ -7,11 +7,11 @@ RUN apk add --no-cache \
 		netcat-openbsd \
 		python3 \
 		python3-dev \
+        postgresql-dev \
 		socat \
 		wget \
     && apk add --no-cache --virtual build-deps \
         build-base \
-        postgresql-dev \
 	&& python3 -m ensurepip \
 	&& rm -r /usr/lib/python*/ensurepip \
 	&& pip3 install --upgrade pip setuptools \
