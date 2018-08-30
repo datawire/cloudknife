@@ -10,6 +10,6 @@ The `datawire/cloudknife` is an alpine container with many useful tools already 
 - `wget`
 - `netcat`
 - `socat`
-
-
-
+- `pgcli` (PostgreSQL client)
+- `gcloud` (Google Cloud Tools)
+- `cloud_sql_proxy` (Google Cloud SQL)
