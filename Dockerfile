@@ -7,6 +7,7 @@ RUN apk add --no-cache \
         bash \
 		bind-tools \
 		curl \
+		docker \
 		netcat-openbsd \
 		python3 \
 		python3-dev \
